@@ -19,14 +19,18 @@ export default NextAuth({
     },
     async session({ session, token }) {
       // Send properties to the client, like an access_token and user id from the provider
-      session.accessToken = token.accessToken;
-      session.user.id = token.id;
-      return session;
+      return {
+        ...session,
+        accessToken: token.accessToken,
+        user: {
+          ...session?.user,
+          id: token.id
+        }
+      };
     },
   },
   pages: {
     signIn: '/login',
-    signUp: '/signup',
   },
   session: {
     strategy: 'jwt',

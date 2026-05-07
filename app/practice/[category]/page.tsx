@@ -22,7 +22,7 @@ import { questions, categories } from '@/data/questions';
 export default function PracticePage() {
   const params = useParams();
   const router = useRouter();
-  const category = params.category as string;
+  const category = params?.category as string;
   
   const {
     currentQuestions,
